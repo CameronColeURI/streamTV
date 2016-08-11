@@ -1,0 +1,13 @@
+{# form.twig
+	This file provides a template for any page that has a fillable form.  For this
+	application, these pages are Login and Register.  
+#}
+
+{% include 'header.twig' %}
+<h1>{{pageTitle}}</h1>
+{{form_start(form)}}
+{{form_widget(form)}}
+{{form_end(form)}}
+<br><br>
+<font color='RED'>{{results}}</font>
+{% include 'footer.twig' %}

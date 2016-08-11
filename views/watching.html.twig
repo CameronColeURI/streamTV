@@ -1,0 +1,24 @@
+{# watching.html.twig
+
+	This file shows a placeholder page with text that would indicate that the user is watching an episode of a show.
+	It will not allow the user to watch if they have already watched the episode once that day.
+	
+	-Cameron Cole
+#}
+
+{% include 'header.twig' %}
+<style>
+table, tr, th, td { border: 1px solid black !important; }
+	td, th {padding: .4em;}
+</style>
+
+{% if result != '' %}
+<h1> Enjoy Watching Episode {{info[0].etitle}} of {{info[0].stitle}}</h1>
+{% endif %}
+
+{% if result == '' %}
+<h2> Cannot watch Episode {{info[0].etitle}} of {{info[0].stitle}}</h2>
+<h3> Your account has already watched this episode today.</h3>
+{% endif %}
+
+{% include 'footer.twig' %}

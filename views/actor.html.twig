@@ -1,0 +1,54 @@
+{# actor.html.twig
+
+	This file provides the template for displaying a details for a specific actor
+	 in the database.
+	 
+	 -Cameron Cole
+#}
+
+{% include 'header.twig' %}
+<style>
+table, tr, th, td { border: 1px solid black !important; }
+	td, th {padding: .4em;}
+	.title { text-align: center; }
+	.role { text-align: center; }
+
+</style>
+{% if maincast %}
+	<h1>Details for {{maincast[0].fname}} {{maincast[0].lname}}</h1>
+
+	<table>
+	<h2>Main Cast Roles for {{maincast[0].fname}} {{maincast[0].lname}}</h2>
+		<tr>
+		<th class="title">Show</th>
+		<th class="role">Role</th>	
+		</tr>
+		{% for roles in maincast %}
+		</tr>
+		<!--link to show information page-->
+		<td class="title"><a href="/streamTV/shows/{{maincast[0].showID}} ">{{maincast[0].title}}</a></td>
+		<td class="role">{{maincast[0].role}}</a></td>
+		</tr>
+		{% endfor %}
+
+	</table>
+{% endif %}
+{% if reccast %}
+	
+	<table>
+	<h3>Recurring Cast Roles for {{reccast[0].fname}} {{reccast[0].lname}}</h3>
+		<tr>
+		<th class="title">Show</th>
+		<th class="role">Role</th>	
+		</tr>
+		{% for roles in reccast %}
+		</tr>
+		<!--link to show information page-->
+		<td class="title"><a href="/streamTV/shows/{{reccast[0].showID}} ">{{reccast[0].title}}</a></td>
+		<td class="role">{{reccast[0].role}}</a></td>
+		</tr>
+		{% endfor %}
+
+{% endif %}
+
+{% include 'footer.twig' %}

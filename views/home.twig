@@ -1,0 +1,23 @@
+{# home.twig
+
+	This file creates the template for the Home page of the streamTV application.
+	It includes the header.twig.
+	It determines if a customer is logged in and displays the appropriate links on the page.
+	
+	-Cameron Cole
+#}
+
+{% include 'header.twig' with { 'pageTitle' : pageTitle}  %}
+
+<br><h3>
+  
+{% if user != '' %}
+	<a href="/streamTV/search">Search for a Show or Actor by Name</a><br>
+	<a href="/streamTV/queue">View Your Queued Shows</a><br>
+	<a href="/streamTV/logout">Logout {{user}}</a><br>
+{% else %}
+	<a href="/streamTV/search">Search for a Show or Actor by Name</a><br>
+	<a href="/streamTV/register">Register as a New Customer</a><br>
+	<a href="/streamTV/login">Login to your Account</a><br>
+{% endif %}	<h3>
+{% include 'footer.twig' %}

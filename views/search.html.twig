@@ -1,0 +1,50 @@
+{# search.html.twig
+
+	This file provides the template for the search and search result page.
+	
+	-Cameron Cole
+#}
+
+{% include 'header.twig' %}
+<style>
+	table, tr, th, td { border: 1px solid black !important; }
+	td, th {padding: .4em;}
+		.title { text-align: center; }
+
+</style>
+
+<h1>Search</h1>
+
+{{form_start(form)}}
+{{form_widget(form)}}
+{{form_end(form)}}
+
+{% if results %}
+	<table>
+		<tr>
+		<th class="title">Show Titles</th>
+		</tr>
+	{% for shows in results %}
+		<tr>
+		<!--link to show information page-->
+		<td class="title"><a href="/streamTV/shows/{{shows.showID}} ">{{shows.title}}</a></td>
+		</tr>
+	{% endfor %}
+	</table>
+{% endif %}
+{% if results2 %}
+	
+	<table>
+		<tr>
+		<th class="name">Actors</th>
+		</tr>
+	{% for actor in results2 %}
+		<tr>
+		<!--link to actor information page-->
+		<td class="name"><a href="/streamTV/actor/{{actor.actID}}">{{actor.fname}} {{actor.lname}}</a></td>
+		</tr>
+	{% endfor %}
+{% endif %}
+
+
+{% include 'footer.twig' %}

@@ -1,0 +1,32 @@
+{# showepisode.html.twig
+
+	This file provides the template for displaying all episodes of a specific show
+	
+	-Cameron Cole
+#}
+
+{% include 'header.twig' %}
+<style>
+table, tr, th, td { border: 1px solid black !important; }
+	td, th {padding: .4em;}
+</style>
+
+{% if result %}
+
+<h1> Episodes of <a href="/streamTV/shows/{{result[0].shownum}}">{{result[0].stitle}}</a></h1>
+	<table>
+		<tr>
+		<th class="season">Season</th>
+		<th class="title">Title</th>
+		<th class="airdate">Air Date</th>
+		</tr>
+		{% for i in result %}
+		<tr>
+		<td class="season">{{i.season}}</td>
+		<td class="etitle"><a href="/streamTV/episodeinfo/{{i.shownum}}&{{i.episodeID}}">{{i.etitle}}</a></td>
+		<td class="airdate">{{i.airdate}}</td>
+		</tr>
+		{% endfor %}
+	</table>
+{% endif %}
+{% include 'footer.twig' %}

@@ -1,0 +1,86 @@
+{# show.html.twig
+
+	This file provides the template for displaying a details for a specific show
+	in the database.  It sets up the table style, and then builds the html code
+	for the table of information about the show.
+	
+	-Cameron Cole
+#}
+
+{% include 'header.twig' %}
+<style>
+table, tr, th, td { border: 1px solid black !important; }
+	td, th {padding: .4em;}
+</style>
+
+
+
+{% if showinfo %}
+
+<h1>{{showinfo[0].title}}</h1>
+
+<h2> View <a href="/streamTV/show_episodes/{{showinfo[0].showID}}">All Episodes</a>
+
+	<table>
+		<tr>
+		<th class="pyear">Premiere Year</th>
+		<td class="attr">{{showinfo[0].premiere_year}}</td>
+		</tr>
+		
+		<tr>
+		<th class="netw">Network</th>
+		<td class="attr">{{showinfo[0].network}}</td>
+		</tr>
+		
+		<tr>
+		<th class="creator">Creator</th>
+		<td class="attr">{{showinfo[0].creator}}</td>
+		</tr>
+		
+		<tr>
+		<th class="category">Category</th>
+		<td class="attr">{{showinfo[0].category}}</td>
+		</tr>	
+	</table>	
+{% endif %}
+
+{% if user != '' %}
+{% if inqueue == '' %}
+<h5><a href="/streamTV/addtoqueue/{{showinfo[0].showID}}">Add to Queue</a></h5>
+{% endif %}
+{% endif %}
+	
+
+{% if maininfo %}
+	<h3> Actors in Main Cast </h3>
+	<table>
+		<tr>
+		<th class="name">Actor</th>
+		<th class="role">Role</th>
+		</tr>
+		{% for actor in maininfo %}
+		<tr>
+		<td class="text"><a href="/streamTV/actor/{{actor.actID}}">{{actor.fname}} {{actor.lname}}</a>
+		<td class="text">{{actor.role}}</a>
+		</tr>
+		{% endfor %}
+	</table>
+{% endif %}
+{% if recinfo %}
+	<h4> Actors in Guest Cast </h4>
+	<table>
+		<tr>
+		<th class="name">Actor</th>
+		<th class="role">Role</th>
+		<th class="count">Number of Appearances</th>
+		</tr>
+		{% for i in recinfo %}
+		<tr>
+		<td class="text"><a href="/streamTV/actor/{{i.actID}}">{{i.fname}} {{i.lname}}</a></td>
+		<td class="text">{{i.role}}</td>		
+		<td class="value">{{i.acount}}</td>				
+		</tr>
+		{% endfor %}
+	</table>
+{% endif %}
+{% include 'footer.twig' %}

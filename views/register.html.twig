@@ -1,0 +1,87 @@
+{# register.html.twig
+
+	This file provides the template for creating a form that allows a customer to register
+	for an account.  It sets up types for each element in the form, as well as errors to
+	be displayed if the form is filled in incorrectly.
+	
+	This was kept from toy database.
+		
+	-Cameron Cole
+#}
+
+{% include 'header.twig' %}
+<h1>Register</h1>
+<form name = "register" method="post" action="">
+    <input type="hidden" name="token" value="{{ token }} " />
+    <table  border="0">
+        <tr>
+            <th colspan="2"><p><strong>Registration Form</strong></p></th>
+        </tr>
+        <tr>
+            <td><span class="error"> {{ errors }} </span>
+        </tr>
+        <tr>
+            <td>Username:</td>
+            <td><input type="text" name="uname" maxlength="20" 
+                                                value="{{ uname }}" />*</td>
+            <td><span class="error"> {{ unameErr }} </span>
+            </td>
+        </tr>
+        <tr>
+            <td>Password:</td>
+            <td><input type="password" name="pword1"  />*</td>
+            <td><span class="error"> {{ pword1Err }} </span>
+            </td>
+        </tr>
+        <tr>
+            <td>Confirm Password:</td>
+            <td><input type="password" name="pword2"  />*</td>
+            <td><span class="error"> {{ pword2Err }} </span>
+            </td>
+            <td><span class="error"> {{ mismatchErr }} </span>
+            </td>
+        </tr>
+        <tr>
+            <td>First Name:</td>
+            <td><input type="text" name="fname" id="fname" 
+                                                value="{{ fname }}" />*</td>
+            <td><span class="error"> {{ fnameErr }} </span>
+            </td>
+        </tr>
+        <tr>
+            <td>Last Name:</td>
+            <td><input type ="text" name="lname" id="lname"
+            					 value="{{ lname }}"/>*</td>
+            <td><span class="error"> {{ lnameErr }} </span>
+            </td>
+        </tr>
+        <tr>
+            <tr>
+                <td>Email:</td>
+                <td><input type="text" name="email" id="email" 
+                                                    value="{{ email }}" />*</td>
+                <td><span class="error"> {{ emailErr }} </span>
+                </td>
+            </tr>
+            <tr>
+                <td>&nbsp;</td>
+                <td><input type="submit" value="Register" />
+                </td>
+            </tr>
+        <tr>
+            <tr>
+                <td>Credit Card:</td>
+                <td><input type="text" name="ccard" id="ccard" 
+                                                    value="{{ ccard }}" />*</td>
+                <td><span class="error"> {{ ccardErr }} </span>
+                </td>
+            </tr>
+            <tr>
+                <td>&nbsp;</td>
+                <td><input type="submit" value="Register" />
+                </td>
+            </tr>
+    </table>
+</form>
+
+{% include 'footer.twig' %}

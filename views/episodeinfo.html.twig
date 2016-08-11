@@ -1,0 +1,73 @@
+{# episodeinfo.html.twig
+
+	This file provides the template for displaying a details about an episode of a show.
+	
+	-Cameron Cole
+#}
+
+{% include 'header.twig' %}
+<style>
+table, tr, th, td { border: 1px solid black !important; }
+	td, th {padding: .4em;}
+</style>
+
+{% if sresult %}
+	<table>
+		<tr>
+		<th class="show">Show</th>
+		<!--link to show information page-->
+		<td class="title"><a href="/streamTV/shows/{{sresult[0].showID}}">{{sresult[0].stitle}}</a></td>
+		</tr>
+		
+		<tr>
+		<th class="episode">Episode</th>
+		<td class="name">{{sresult[0].etitle}}</td>
+		</tr>
+		
+		<tr>
+		<th class="airdate">Air date</td>
+		<td class="adate">{{sresult[0].adate}}</td>
+		</tr>		
+	</table>
+{% endif %}
+
+{% if user != '' %}
+<!--link to watching page-->
+	<h1><a href="/streamTV/watch_episode/{{sresult[0].showID}}&{{sresult[0].episodeID}}">Watch Episode</a></h1>
+{% endif %}
+
+{% if mresult %}
+<h2> Main Cast: </h2>
+	<table>
+		<tr>
+		<th class="actor">Actor</th>
+		<th class="role">Role</th>
+		</tr>
+		{% for i in mresult %}
+		<tr>
+		<!--link to actor information page-->
+		<td class="name"><a href="/streamTV/actor/{{i.actnum}}">{{i.fname}} {{i.lname}}</a></td>
+		<td class="role">{{i.role}}</td>
+		</tr>
+		{% endfor %}
+	</table>
+{% endif %}
+
+{% if recresult %}
+<h3> Recurring Cast: </h3>
+	<table>
+		<tr>
+		<th class="actor">Actor</th>
+		<th class="role">Role</th>
+		</tr>
+		{% for i in recresult %}
+		<tr>
+		<!--link to actor information page-->
+		<td class="name"><a href="/streamTV/actor/{{i.actnum}}">{{i.fname}} {{i.lname}}</a></td>
+		<td class="role">{{i.role}}</td>
+		</tr>
+		{% endfor %}
+	</table>
+{% endif %}		
+		
+{% include 'footer.twig' %}
